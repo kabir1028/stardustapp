@@ -1,0 +1,3 @@
+// STAGE 1: Project settings
+include ':app'
+rootProject.name = "VR Web Viewer"

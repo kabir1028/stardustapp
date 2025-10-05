@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vr_background"
+    android:keepScreenOn="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <!-- Hidden WebView for capture -->
+    <WebView
+        android:id="@+id/hidden_webview"
+        android:layout_width="1024dp"
+        android:layout_height="576dp"
+        android:visibility="invisible" />
+
+    <!-- Pro VR Split Screen Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <!-- Left Eye - Pro VR -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/left_eye_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="matrix"
+                android:background="@color/vr_background" />
+
+            <!-- Enhanced Left Crosshair -->
+            <View
+                android:id="@+id/left_crosshair"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="center"
+                android:background="@drawable/pro_crosshair"
+                android:alpha="0.8" />
+
+        </FrameLayout>
+
+        <!-- Pro Center Divider -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/primary_light" />
+
+        <!-- Right Eye - Pro VR -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/right_eye_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="matrix"
+                android:background="@color/vr_background" />
+
+            <!-- Enhanced Right Crosshair -->
+            <View
+                android:id="@+id/right_crosshair"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="center"
+                android:background="@drawable/pro_crosshair"
+                android:alpha="0.8" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Pro VR Menu Trigger (Enhanced) -->
+    <View
+        android:id="@+id/menu_trigger"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent" />
+
+    <!-- Pro VR Menu Dropdown (Enhanced) -->
+    <LinearLayout
+        android:id="@+id/vr_menu"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:orientation="vertical"
+        android:background="@drawable/pro_vr_menu_background"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:elevation="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VR Controls"
+            android:textColor="@color/text_inverse"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/menu_zoom_in"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Zoom In"
+            android:textColor="@color/text_inverse"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/pro_menu_item"
+            android:layout_marginBottom="6dp"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/menu_zoom_out"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Zoom Out"
+            android:textColor="@color/text_inverse"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/pro_menu_item"
+            android:layout_marginBottom="6dp"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/menu_reset"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Recalibrate"
+            android:textColor="@color/text_inverse"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/pro_menu_item"
+            android:layout_marginBottom="6dp"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/menu_info"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Page Info"
+            android:textColor="@color/text_inverse"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/pro_menu_item"
+            android:layout_marginBottom="6dp"
+            android:clickable="true" />
+
+        <TextView
+            android:id="@+id/menu_settings"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Refresh Settings"
+            android:textColor="@color/text_inverse"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/pro_menu_item"
+            android:layout_marginBottom="6dp"
+            android:clickable="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/primary_light"
+            android:layout_marginVertical="6dp" />
+
+        <TextView
+            android:id="@+id/menu_exit"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:text="Exit VR"
+            android:textColor="@color/error"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:background="@drawable/pro_menu_item"
+            android:clickable="true" />
+
+    </LinearLayout>
+
+    <!-- Pro Debug Info (Enhanced) -->
+    <TextView
+        android:id="@+id/debug_overlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:text="FPS: -- | Zoom: 1.0x"
+        android:textColor="@color/text_inverse"
+        android:textSize="10sp"
+        android:background="@drawable/pro_debug_background"
+        android:padding="6dp"
+        android:alpha="0.7" />
+
+    <!-- Pro VR Instructions (Auto-hide after 3 seconds) -->
+    <TextView
+        android:id="@+id/instructions_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:text="Move phone to look around • Hold crosshair on button for 3s to click"
+        android:textColor="@color/text_inverse"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:background="@drawable/pro_instructions_background"
+        android:padding="12dp"
+        android:alpha="0.9" />
+
+</RelativeLayout>

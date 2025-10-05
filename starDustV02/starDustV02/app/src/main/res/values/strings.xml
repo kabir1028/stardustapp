@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">The Star Dust</string>
+    <string name="app_tagline">Space Exploration &amp; VR Experience</string>
+    <string name="welcome_title">Welcome to Star Dust VR</string>
+    <string name="galaxy_explorer">Galaxy Explorer</string>
+    <string name="planet_explorer">Planet Explorer</string>
+    <string name="constellations">Constellations</string>
+    <string name="research_dev">Research &amp; Dev</string>
+    <string name="vr_experience">VR Experience</string>
+    <string name="galaxy_desc">Explore distant galaxies and nebulae</string>
+    <string name="planet_desc">Discover planets and their secrets</string>
+    <string name="constellation_desc">Navigate by the stars</string>
+    <string name="research_desc">Latest space discoveries</string>
+    <string name="vr_desc">Immersive space exploration</string>
+</resources>

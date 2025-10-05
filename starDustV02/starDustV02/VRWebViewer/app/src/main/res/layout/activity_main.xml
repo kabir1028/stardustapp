@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ENHANCED MAIN LAYOUT - Modern UI with gradient background -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary_dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="VR Web Viewer"
+        app:titleTextColor="@android:color/white" />
+
+    <!-- Main content -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+
+        <!-- App logo/title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🥽 VR Web Viewer"
+            android:textSize="32sp"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            android:shadowColor="#000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Experience websites in virtual reality"
+            android:textSize="16sp"
+            android:textColor="#E0E0E0"
+            android:layout_marginBottom="48dp"
+            android:gravity="center" />
+
+        <!-- Action buttons -->
+        <Button
+            android:id="@+id/btn_explore"
+            style="@style/VrButton"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:text="🌐 Explore Website"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/explore_color"
+            android:drawablePadding="8dp" />
+
+        <Button
+            android:id="@+id/btn_vr"
+            style="@style/VrButton"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:text="🥽 Experience VR"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/vr_color" />
+
+        <Button
+            android:id="@+id/btn_settings"
+            style="@style/VrButton"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:text="⚙️ Settings"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/settings_color" />
+
+        <Button
+            android:id="@+id/btn_exit"
+            style="@style/VrButton"
+            android:layout_width="280dp"
+            android:layout_height="60dp"
+            android:text="❌ Exit"
+            android:textSize="18sp"
+            android:backgroundTint="@color/exit_color" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- Background circle -->
+    <path
+        android:pathData="M60,60m-50,0a50,50 0,1 1,100 0a50,50 0,1 1,-100 0"
+        android:fillColor="@color/primary_color" />
+    
+    <!-- VR Headset outline -->
+    <path
+        android:pathData="M30,45 Q30,35 40,35 L80,35 Q90,35 90,45 L90,75 Q90,85 80,85 L40,85 Q30,85 30,75 Z"
+        android:fillColor="@android:color/white"
+        android:strokeColor="@color/primary_dark"
+        android:strokeWidth="2" />
+    
+    <!-- Left lens -->
+    <path
+        android:pathData="M45,60m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0"
+        android:fillColor="@color/primary_light"
+        android:strokeColor="@color/primary_dark"
+        android:strokeWidth="1" />
+    
+    <!-- Right lens -->
+    <path
+        android:pathData="M75,60m-12,0a12,12 0,1 1,24 0a12,12 0,1 1,-24 0"
+        android:fillColor="@color/primary_light"
+        android:strokeColor="@color/primary_dark"
+        android:strokeWidth="1" />
+    
+    <!-- Center bridge -->
+    <path
+        android:pathData="M57,55 L63,55 L63,65 L57,65 Z"
+        android:fillColor="@android:color/white" />
+    
+    <!-- Strap -->
+    <path
+        android:pathData="M90,50 Q105,60 90,70"
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="3"
+        android:fillColor="@android:color/transparent" />
+    
+    <path
+        android:pathData="M30,50 Q15,60 30,70"
+        android:strokeColor="@android:color/white"
+        android:strokeWidth="3"
+        android:fillColor="@android:color/transparent" />
+        
+</vector>

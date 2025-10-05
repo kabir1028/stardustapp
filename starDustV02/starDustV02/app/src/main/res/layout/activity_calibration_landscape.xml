@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/dark_bg"
+    android:padding="20dp">
+
+    <!-- Left Side - Controls and Info -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VR Gyro Calibration"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Status -->
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Step 1 of 5"
+            android:textSize="12sp"
+            android:textColor="@color/text_light"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Instruction -->
+        <TextView
+            android:id="@+id/instruction_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Look straight ahead at CENTER"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="@color/dark_surface"
+            android:layout_marginBottom="20dp" />
+
+        <!-- Gyro Values Display -->
+        <TextView
+            android:id="@+id/gyro_values"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gyro: X=0.00 Y=0.00 Z=0.00"
+            android:textSize="12sp"
+            android:textColor="@color/text_light"
+            android:gravity="center"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Buttons -->
+        <Button
+            android:id="@+id/capture_button"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:text="Capture Position"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:text="Save Calibration"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:enabled="false"
+            android:layout_marginBottom="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/reset_button"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:text="Reset"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/back_button"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:text="Back"
+                android:layout_marginStart="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Right Side - Gyro Ball Visualization -->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="20dp">
+
+        <!-- Gyro Ball Container -->
+        <FrameLayout
+            android:id="@+id/gyro_ball_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <!-- Background Circle -->
+            <View
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:background="@drawable/gyro_ball_background" />
+
+            <!-- Center Cross -->
+            <View
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:background="@drawable/gyro_ball_cross" />
+
+            <!-- Moving Dot -->
+            <View
+                android:id="@+id/gyro_dot"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="@drawable/gyro_dot" />
+
+            <!-- Direction Labels -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UP"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="10dp"
+                android:text="DOWN"
+                android:paddingBottom="20dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="LEFT"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RIGHT"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginEnd="10dp" />
+
+        </FrameLayout>
+
+        <!-- Instructions -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Move your head to see the dot move."
+            android:textSize="11sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="5dp" />
+
+    </FrameLayout>
+
+</LinearLayout>

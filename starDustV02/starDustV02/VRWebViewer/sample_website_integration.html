@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Web Viewer - Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .vr-zone {
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 40px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .vr-zone:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+        
+        .draggable-area {
+            background: rgba(0,255,0,0.1);
+            border: 2px solid rgba(0,255,0,0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            cursor: move;
+        }
+        
+        .event-log {
+            background: rgba(0,0,0,0.3);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        
+        button:hover {
+            background: #45a049;
+        }
+        
+        .info-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🥽 VR Web Viewer Test Page</h1>
+        <p>This page demonstrates VR interaction capabilities</p>
+        
+        <div class="info-box">
+            <h3>📱 How to Test:</h3>
+            <ol>
+                <li>Load this page in VR Web Viewer</li>
+                <li>Enter VR mode</li>
+                <li>Touch and drag on the green areas below</li>
+                <li>Watch the event log for interaction feedback</li>
+            </ol>
+        </div>
+        
+        <div class="vr-zone" onclick="logEvent('VR Zone clicked!')">
+            <h2>🎯 Click Target</h2>
+            <p>Tap this area in VR mode to test click events</p>
+        </div>
+        
+        <div class="draggable-area" 
+             onmousedown="startDrag(event)" 
+             onmousemove="drag(event)" 
+             onmouseup="endDrag(event)">
+            <h2>🖱️ Drag Area</h2>
+            <p>Touch and drag this area in VR mode</p>
+            <p id="drag-coords">Coordinates: (0, 0)</p>
+        </div>
+        
+        <button onclick="clearLog()">Clear Log</button>
+        <button onclick="testScroll()">Test Scroll</button>
+        <button onclick="simulateVrEvent()">Simulate VR Event</button>
+        
+        <div class="event-log" id="eventLog">
+            <div>Event log initialized...</div>
+        </div>
+        
+        <div class="info-box">
+            <h3>🔧 Integration Code:</h3>
+            <p>Add this JavaScript to your website to receive VR events:</p>
+            <pre style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; overflow-x: auto;">
+// Listen for VR Web Viewer events
+window.addEventListener('message', function(event) {
+    if (event.data.type === 'vrControl') {
+        console.log('VR Event:', event.data);
+        // Handle VR interaction
+    }
+});
+
+// Alternative: Direct function calls
+window.onVrControllerEvent = function(type, x, y) {
+    console.log('VR Controller:', type, x, y);
+    // Handle VR interaction
+};
+            </pre>
+        </div>
+    </div>
+
+    <script>
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartY = 0;
+        
+        function logEvent(message) {
+            const log = document.getElementById('eventLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.textContent = `[${timestamp}] ${message}`;
+            log.appendChild(entry);
+            log.scrollTop = log.scrollHeight;
+            
+            // Keep only last 20 entries
+            while (log.children.length > 20) {
+                log.removeChild(log.firstChild);
+            }
+        }
+        
+        function startDrag(event) {
+            isDragging = true;
+            dragStartX = event.clientX;
+            dragStartY = event.clientY;
+            logEvent(`Drag started at (${event.clientX}, ${event.clientY})`);
+        }
+        
+        function drag(event) {
+            if (!isDragging) return;
+            
+            const deltaX = event.clientX - dragStartX;
+            const deltaY = event.clientY - dragStartY;
+            
+            document.getElementById('drag-coords').textContent = 
+                `Coordinates: (${event.clientX}, ${event.clientY}) Delta: (${deltaX}, ${deltaY})`;
+            
+            // Throttle log messages
+            if (Math.abs(deltaX) > 5 || Math.abs(deltaY) > 5) {
+                logEvent(`Dragging: delta (${deltaX}, ${deltaY})`);
+                dragStartX = event.clientX;
+                dragStartY = event.clientY;
+            }
+        }
+        
+        function endDrag(event) {
+            if (!isDragging) return;
+            isDragging = false;
+            logEvent(`Drag ended at (${event.clientX}, ${event.clientY})`);
+        }
+        
+        function clearLog() {
+            document.getElementById('eventLog').innerHTML = '<div>Event log cleared...</div>';
+        }
+        
+        function testScroll() {
+            window.scrollBy(0, 100);
+            logEvent('Scroll test executed');
+        }
+        
+        function simulateVrEvent() {
+            logEvent('VR Event simulated - this would come from the app');
+            
+            // Simulate postMessage from VR app
+            window.postMessage({
+                type: 'vrControl',
+                action: 'drag',
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight
+            }, '*');
+        }
+        
+        // Listen for VR Web Viewer events
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'vrControl') {
+                logEvent(`VR Message: ${event.data.action} at (${event.data.x}, ${event.data.y})`);
+            }
+        });
+        
+        // Alternative function for direct calls from VR app
+        window.onVrControllerEvent = function(type, x, y) {
+            logEvent(`VR Controller: ${type} at (${x}, ${y})`);
+        };
+        
+        // Log page load
+        window.addEventListener('load', function() {
+            logEvent('Page loaded and ready for VR interaction');
+        });
+        
+        // Log all mouse events for debugging
+        document.addEventListener('mousedown', function(e) {
+            logEvent(`Mouse down: (${e.clientX}, ${e.clientY})`);
+        });
+        
+        document.addEventListener('mouseup', function(e) {
+            logEvent(`Mouse up: (${e.clientX}, ${e.clientY})`);
+        });
+        
+        // Prevent context menu in VR mode
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>

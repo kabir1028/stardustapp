@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ENHANCED WEBSITE LAYOUT - Full browser with progress bar -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/primary_dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <!-- Navigation and controls container -->
+    <LinearLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/primary_dark">
+
+        <!-- Progress bar -->
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:progressTint="@color/accent_color"
+            android:visibility="gone" />
+
+        <!-- Navigation toolbar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/btn_back"
+                style="@style/NavButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="←"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_forward"
+                style="@style/NavButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="→"
+                android:textSize="20sp"
+                android:layout_marginStart="4dp" />
+
+            <Button
+                android:id="@+id/btn_reload"
+                style="@style/NavButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="↻"
+                android:textSize="20sp"
+                android:layout_marginStart="4dp" />
+
+            <TextView
+                android:id="@+id/url_display"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="Loading..."
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:gravity="center_vertical"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:background="@drawable/url_background"
+                android:padding="8dp" />
+
+            <Button
+                android:id="@+id/btn_vr"
+                style="@style/NavButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:text="🥽"
+                android:textSize="16sp"
+                android:backgroundTint="@color/vr_color" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- WebView for website content -->
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

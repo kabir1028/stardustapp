@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- VR ACTIVITY LAYOUT - Stereoscopic split-screen with controls -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:keepScreenOn="true">
+
+    <!-- Hidden WebView for capture -->
+    <WebView
+        android:id="@+id/hidden_webview"
+        android:layout_width="1024dp"
+        android:layout_height="576dp"
+        android:visibility="invisible" />
+
+    <!-- Split-screen container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <!-- Left eye view -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/left_eye_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="#111111" />
+
+            <!-- Left eye label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L"
+                android:textColor="#666666"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_margin="16dp" />
+
+        </FrameLayout>
+
+        <!-- Center divider -->
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#333333" />
+
+        <!-- Right eye view -->
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/right_eye_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="#111111" />
+
+            <!-- Right eye label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R"
+                android:textColor="#666666"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_margin="16dp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- VR Controls overlay -->
+    <LinearLayout
+        android:id="@+id/vr_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@drawable/controls_background"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_exit_vr"
+            style="@style/VrControlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="❌ Exit VR"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/exit_color" />
+
+        <Button
+            android:id="@+id/btn_fullscreen"
+            style="@style/VrControlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="⛶ Fullscreen"
+            android:backgroundTint="@color/settings_color" />
+
+    </LinearLayout>
+
+    <!-- Debug overlay -->
+    <TextView
+        android:id="@+id/debug_overlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:text="FPS: -- | BLE: OFF"
+        android:textColor="#CCCCCC"
+        android:textSize="12sp"
+        android:background="@drawable/debug_background"
+        android:padding="8dp" />
+
+    <!-- Instructions overlay -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="👆 Touch and drag to navigate\n🥽 Insert phone into VR headset"
+        android:textColor="#888888"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:background="@drawable/instructions_background"
+        android:padding="16dp"
+        android:alpha="0.8" />
+
+</RelativeLayout>
